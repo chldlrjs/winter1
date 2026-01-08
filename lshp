@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEESLE - 26 S/S Collection 墨(묵)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F5F2EB; /* 닥종이 같은 미색 */
+            --text-color: #111;
+            --font-main: 'Nanum Myeongjo', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Serif KR', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* =================================================================
+           [CSS 수묵 효과] 
+           ================================================================= */
+        .ink-shape {
+            position: absolute;
+            background: #000;
+            border-radius: 50%;
+            filter: blur(40px); /* 흐림 효과로 먹 번짐 표현 */
+            opacity: 0.08; /* 아주 연하게 */
+            z-index: -1;
+            pointer-events: none;
+            animation: ink-float 10s infinite alternate ease-in-out;
+        }
+
+        /* 1. 우상단 거대한 먹구름 */
+        .ink-1 {
+            top: -100px; right: -100px;
+            width: 600px; height: 500px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* 불규칙한 원형 */
+        }
+
+        /* 2. 좌측 중앙 먹물 방울 */
+        .ink-2 {
+            top: 40%; left: -50px;
+            width: 300px; height: 300px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            opacity: 0.05;
+        }
+
+        /* 3. 하단 바닥에 깔린 먹 */
+        .ink-3 {
+            bottom: -50px; right: 10%;
+            width: 500px; height: 200px;
+            border-radius: 50% 50% 20% 20%;
+            opacity: 0.1;
+            background: linear-gradient(to right, #333, #000);
+        }
+
+        /* 4. [소나무 대체] 초록빛이 감도는 먹 (솔잎 느낌) */
+        .ink-pine {
+            position: absolute;
+            top: 10%; right: 5%;
+            width: 200px; height: 300px;
+            background: #2F4F4F; /* 짙은 쑥색 */
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            filter: blur(30px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        @keyframes ink-float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(10px) scale(1.05); }
+        }
+
+        /* ================================================================= */
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; position: fixed; width: 100%; top: 0; z-index: 100;
+        }
+        .logo {
+            font-family: var(--font-main); font-weight: 800; font-size: 2rem;
+            letter-spacing: 5px;
+        }
+        .menu a {
+            text-decoration: none; color: #333; margin-left: 30px; font-size: 0.9rem;
+            opacity: 0.6; transition: 0.3s;
+        }
+        .menu a:hover { opacity: 1; }
+
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; padding-left: 10%; position: relative;
+        }
+
+        /* 붓글씨 타이틀 */
+        .title-wrap h1 {
+            font-family: var(--font-main); font-size: 15vw; line-height: 1;
+            margin: 0; opacity: 0.9;
+            text-shadow: 10px 10px 20px rgba(0,0,0,0.05); /* 입체감 */
+        }
+        .title-wrap p {
+            font-size: 1.2rem; letter-spacing: 2px; margin-top: 20px; color: #555;
+            border-top: 1px solid #333; display: inline-block; padding-top: 10px;
+        }
+
+        .scroll-txt {
+            position: absolute; bottom: 50px; left: 10%;
+            font-size: 0.8rem; color: #999; writing-mode: vertical-rl;
+        }
+
+        .content {
+            padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            align-items: center; position: relative;
+        }
+
+        /* 룩북 이미지 박스 수정됨 */
+        .img-box {
+            height: 600px;
+            /* 기존의 회색 배경 제거, 이미지가 없을 때만 보이도록 설정 가능하나 깔끔하게 제거함 */
+            background: #e8e6df; 
+            position: relative;
+            border: 1px solid #ccc; /* 테두리 유지 */
+        }
+        
+        /* 이미지가 박스 안에 꽉 차도록 설정 */
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 이미지가 찌그러지지 않고 비율 유지하며 꽉 참 */
+            display: block;
+        }
+
+        /* 사진 뒤에 겹쳐진 박스 효과 (장식) */
+        .img-box::before {
+            content: ''; position: absolute; top: 20px; left: -20px;
+            width: 100%; height: 100%; border: 1px solid #111; z-index: -1;
+        }
+
+        .text-box h2 {
+            font-family: var(--font-main); font-size: 3rem; margin-bottom: 30px;
+        }
+        .text-box p {
+            color: #555; line-height: 1.8; margin-bottom: 20px;
+            word-break: keep-all;
+        }
+        .btn {
+            display: inline-block; padding: 15px 40px; background: #111; color: #fff;
+            text-decoration: none; font-size: 0.9rem; margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #444; }
+
+        footer {
+            text-align: center; padding: 50px; color: #aaa; font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ink-shape ink-1"></div>
+    <div class="ink-shape ink-pine"></div>
+    <div class="ink-shape ink-2"></div>
+
+    <nav>
+        <div class="logo">LEESLE</div>
+        <div class="menu">
+            <a href="#">COLLECTION</a>
+            <a href="#">SHOP</a>
+            <a href="#">LOGIN</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="title-wrap">
+            <h1>墨</h1>
+            <p>2026 S/S CAPSULE COLLECTION</p>
+        </div>
+        <div class="scroll-txt">SCROLL DOWN</div>
+    </section>
+
+    <section class="content">
+        <div class="ink-shape ink-3"></div>
+
+        <div class="img-box">
+            <img src="gt.png" alt="LEESLE 26 S/S Lookbook">
+        </div>
+
+        <div class="text-box">
+            <h2>검은 빛의 향연</h2>
+            <p>
+                먹이 화선지에 스며들듯, 
+                가장 한국적인 선과 여백으로
+            </p>
+            <p>
+                단순한 블랙이 아닌, 깊이 있는 어둠과 빛의 조화를 만나보세요.
+            </p>
+            <a href="lookbok.html" class="btn">컬렉션 확인하기</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 LEESLE. Designed by Choiminsung.
+    </footer>
+
+</body>
+</html>
